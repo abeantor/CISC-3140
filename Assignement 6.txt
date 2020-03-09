@@ -1,0 +1,89 @@
+
+Abu Antor
+CISC 3140 
+Assignment 6 - Writing a program in Scheme
+Professor Katherine Chuang
+
+Scheme is a programming language that supports multiple paradigms, including functional and imperative programming. It is one of the three main dialects of Lisp, alongside Common Lisp and Clojure.
+
+1. Check if an input string is a palindrome, return a boolean value. 
+Allow list input type. Required implementation: Write your own reverser function.
+
+;;SUB_FUNCTION
+;;takes list as a input and returns reverse of a list if
+;;(reverse '(a b c)) ---> '(c b a)
+
+(define (reverse ls)
+	(cond ((null? ls) '()) 
+	;;list is nil reverse of list is also nil
+		(else (append (reverse (cdr ls)) (list (car ls)))))) 
+		;; else append tail and call reverse.
+
+;;MAIN_FUNCTION
+;;takes list as input and checks for polindrome
+(define (palindrome ls)
+	(cond ((null? ls) 'true) 
+	;;if list is nil return true
+		((equal? (reverse ls) ls) 'true) 
+		 ;;if reverse list == given list,its a palindrome
+		 (else 'false))) 
+		  ;;else false
+	
+	
+> (palindrome '(a b a))
+=>	true
+> (palindrome '(a b))
+=>	false
+> (palindrome '(a 1 a))
+=>	true
+> (palindrome '())
+=>	true
+> (palindrome '(1 2 3 3 2 1))
+=>	true
+	
+2. Create a lambda expression that evaluates a sum of series given a number input n.
+ Combine this lambda expression with a map so that you can pass in a list of numbers 
+ and get the sum of series that returns a list.
+
+We needed a non-variadic map (here called map1) in order to do (map1 car lists) to get the argument list to call function with, and (map1 cdr lists) to get the rests of the lists to recurse with. To write a variadic map (here called my-map), you already need an implementation of the non-variadic map.
+
+(define (my-map function list1 . more-lists)
+  (define (some? function list)
+    ;; returns #f if (function x) returns #t for 
+    ;; some x in the list
+    (and (pair? list)
+         (or (function (car list))
+             (some? function (cdr list)))))
+  (define (map1 function list)
+    ;; non-variadic map.  Returns a list whose elements are
+    ;; the result of calling function with corresponding
+    ;; elements of list
+    (if (null? list)
+        '()
+        (cons (function (car list))
+              (map1 function (cdr list)))))
+  ;; Variadic map implementation terminates
+  ;; when any of the argument lists is empty
+  (let ((lists (cons list1 more-lists)))
+    (if (some? null? lists)
+        '()
+        (cons (apply function (map1 car lists))
+              (apply my-map function (map1 cdr lists))))))
+
+
+> (my-map + '(0 2 5) '(1 2 3))
+=> (1 4 8)
+
+
+
+3. Error Checking
+The Scheme interpreter should check this automatically. You only need to do your own checking  of the number of arguments if you define the procedure to take spread arguments. You would  normally only do this if the procedure takes a variable number of arguments. For procedures  with static arguments, just list them in the definition and let the interpreter do the checking for you.
+
+(define (thirds . args)
+    (if (= (length args) 1)
+        (let ((lst (car args)))
+            (cond ... ; all the rest of the code
+                ))
+        (display "Oh that's an error")))				
+				
+		   
