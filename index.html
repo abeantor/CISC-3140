@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8 " />
+    <meta name="viewport" content="width=\ initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fetch JSON From API and Map LAT Location </title>
+</head>
+
+<body>
+
+    <h1> Real-time ISS location </h1>
+    <p> Latitude : <span id="lat"> </span><br />
+        Longitude : <span id="lon"> </span><br />
+        Altitude : <span id="alt"> </span><br />
+        Velocity : <span id="vel"> </span><br />
+        Footprint : <span id="foot"> </span><br />
+        Timestamp : <span id="times"> </span><br />
+        Daynum : <span id="dayn"> </span><br />
+        Solar_lat : <span id="solarLat"> </span><br />
+        Solar_lon : <span id="solarLon"> </span><br />
+        Visibility : <span id="vis"> </span><br />
+        Units : <span id="uni"> </span><br />
+    </p>
+
+
+
+    <script>
+
+        const API_url = 'https://api.wheretheiss.at/v1/satellites/25544';
+        async function getISS() {
+
+            const response = await fetch(API_url);
+            const data = await response.json();
+            const { latitude, longitude, altitude, velocity, footprint,
+                timestamp, daynum, solar_lat, solar_lon, visibility, units } = data;
+
+            document.getElementById('lat').textContent = latitude;
+            document.getElementById('lon').textContent = longitude;
+            document.getElementById('alt').textContent = altitude;
+            document.getElementById('vel').textContent = velocity;
+            document.getElementById('foot').textContent = footprint;
+            document.getElementById('times').textContent = timestamp;
+            document.getElementById('dayn').textContent = daynum;
+            document.getElementById('solarLat').textContent = solar_lat;
+            document.getElementById('solarLon').textContent = solar_lon;
+            document.getElementById('vis').textContent = visibility;
+            document.getElementById('uni').textContent = units;
+
+
+        }
+
+
+        getISS();
+
+    </script>
+</body>
+
+</html>
