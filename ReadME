@@ -7,7 +7,9 @@ systems can use it. It defines the kinds of calls or requests that canbe made, h
 conventions to follow, etc.
 
 API Fetching
-The Fetch API is a simple interface for fetching resources. Fetch makes it easier to make web requests and handle responses than with the older XMLHttpRequest, which often requires additional logic (for example, for handling redirects). Note: Fetch supports the Cross Origin Resource Sharing (CORS).
+The Fetch API is a simple interface for fetching resources. Fetch makes it easier to make web requests and handle responses than with the 
+older XMLHttpRequest, which often requires additional logic (for example, for handling redirects). Note: Fetch supports the Cross Origin 
+Resource Sharing (CORS).
 
 
 
