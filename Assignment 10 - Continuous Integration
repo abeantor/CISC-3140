@@ -1,0 +1,20 @@
+
+Assignment 10 - Continuous Integration
+For this Assingment I have used Glitch to deploy my simple html and made it live. 
+https://glitch.com/
+
+
+Abut Glitch
+The Glitch web application launched in the spring of 2017 as a place for people to build simple web applications using JavaScript. 
+Pitched as a "view source" tool that lets users "recombine code in useful ways.", Glitch is an online IDE for JavaScript and Node.
+You have access to logs, the console, and lots of internal stuff. Also, the concept of remixing so prominent in the interface makes me
+much more likely to create lots of projects there, as I never have to start from a clean slate. You can start diving into the code without 
+losing time setting up an environment, version control, and focus on the idea, with an automatic HTTPS URL and a CDN for the media assets.
+Also, there’s no lock-in at all, it’s just Node.js (or if you don’t use server-side JavaScript, it’s just HTML, JS and CSS)
+
+
+
+
+
+View the data live using GLITCH 
+https://beaded-hushed-axolotl.glitch.me/
